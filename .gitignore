@@ -3,4 +3,5 @@ dist/
 coverage/
 .env
 *.log
-reports/snapshots.csv
+.vscode/virtualTab.json
+*.csv
