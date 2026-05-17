@@ -26,14 +26,24 @@ export async function writePlatformChart(extensionId: string, platform: Platform
   return `output/charts/${fileName}`;
 }
 
+const PLATFORM_META: Record<string, { title: string; yLabel: string }> = {
+  marketplace: { title: "VS Code Marketplace History", yLabel: "Installs / Downloads" },
+  openvsx:     { title: "Open VSX History",             yLabel: "Downloads" },
+  firefox:     { title: "Mozilla Add-ons History",      yLabel: "Avg Daily Users" },
+  jetbrains:   { title: "JetBrains Marketplace History", yLabel: "Downloads" },
+  npm:         { title: "npm Registry History",          yLabel: "Weekly Downloads" },
+  docker:      { title: "Docker Hub History",            yLabel: "Pulls" },
+  github:      { title: "GitHub Releases History",       yLabel: "Release Downloads" },
+};
+
 function renderPlatformChart(extensionId: string, platform: Platform, snapshots: Snapshot[]): string {
   const points = snapshots
     .filter((snapshot) => snapshot.extension_id === extensionId && snapshot.platform === platform)
     .sort((a, b) => a.snapshot_date.localeCompare(b.snapshot_date));
 
   const series = buildSeries(platform, points);
-  const title = platform === "marketplace" ? "VS Code Marketplace History" : "Open VSX History";
-  const yLabel = platform === "marketplace" ? "Marketplace count" : "Open VSX downloads";
+  const meta = PLATFORM_META[platform] ?? { title: `${platform} History`, yLabel: "Count" };
+  const { title, yLabel } = meta;
   
   const dates = points.length > 0 
     ? generateDateRange(points[0].snapshot_date, points.at(-1)!.snapshot_date)
@@ -135,25 +145,32 @@ function renderDateLabels(dates: string[], xFor: (date: string) => number): stri
   }).join("\n  ");
 }
 
+/** Per-platform series definitions. */
+const PLATFORM_SERIES: Record<string, Array<{ label: string; color: string; field: "install_count" | "download_count" }>> = {
+  // Both installs + downloads
+  marketplace: [
+    { label: "installs",  color: "#2563eb", field: "install_count" },
+    { label: "downloads", color: "#ef3b20", field: "download_count" },
+  ],
+  // Downloads / pulls only
+  openvsx:   [{ label: "downloads",   color: "#ef3b20", field: "download_count" }],
+  firefox:   [{ label: "daily users", color: "#ef3b20", field: "download_count" }],
+  jetbrains: [{ label: "downloads",   color: "#ef3b20", field: "download_count" }],
+  npm:       [{ label: "weekly downloads", color: "#ef3b20", field: "download_count" }],
+  docker:    [{ label: "pulls",        color: "#ef3b20", field: "download_count" }],
+  github:    [{ label: "release downloads", color: "#ef3b20", field: "download_count" }],
+};
+
 function buildSeries(platform: Platform, snapshots: Snapshot[]): Series[] {
-  const downloadSeries: Series = {
-    label: "downloads",
-    color: "#ef3b20",
-    values: snapshots.flatMap((snapshot) => snapshot.download_count === null ? [] : [{ date: snapshot.snapshot_date, value: snapshot.download_count }]),
-  };
-
-  if (platform === "openvsx") {
-    return [downloadSeries];
-  }
-
-  return [
-    {
-      label: "installs",
-      color: "#2563eb",
-      values: snapshots.flatMap((snapshot) => snapshot.install_count === null ? [] : [{ date: snapshot.snapshot_date, value: snapshot.install_count }]),
-    },
-    downloadSeries,
-  ];
+  const defs = PLATFORM_SERIES[platform] ?? [{ label: "count", color: "#ef3b20", field: "download_count" as const }];
+  return defs.map((def) => ({
+    label: def.label,
+    color: def.color,
+    values: snapshots.flatMap((snapshot) => {
+      const v = snapshot[def.field];
+      return v === null ? [] : [{ date: snapshot.snapshot_date, value: v }];
+    }),
+  }));
 }
 
 function buildTicks(maxValue: number, minValue: number): number[] {
