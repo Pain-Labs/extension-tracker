@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extension Tracker Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            --accent-hover: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            background-image:
+                radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 2rem;
+            line-height: 1.5;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding-top: 2rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        p.subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+            animation: fadeIn 0.8s ease-out backwards;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.2);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            word-break: break-all;
+        }
+
+        .card-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .repo-link {
+            color: var(--text-main);
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .repo-link:hover {
+            background: var(--accent-gradient);
+            color: white;
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+        }
+
+        .charts {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .chart-container {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 120px;
+            position: relative;
+        }
+
+        .chart-container::before {
+            content: 'Loading chart...';
+            position: absolute;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            z-index: 0;
+            animation: pulse 1.5s infinite;
+        }
+
+        .chart-img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            position: relative;
+            z-index: 1;
+            background: transparent;
+            transition: opacity 0.3s;
+        }
+
+        .chart-img.error {
+            opacity: 0;
+        }
+
+        .chart-container.error::before {
+            content: 'No data collected yet';
+            animation: none;
+            color: #ef4444;
+        }
+
+        .loading-state {
+            text-align: center;
+            padding: 4rem;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.5;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            body {
+                padding: 1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Analytics Dashboard</h1>
+        <p class="subtitle" id="repo-info">Loading repository data...</p>
+    </header>
+
+    <div class="container">
+        <div id="loading" class="loading-state">
+            Fetching tracked extensions config...
+        </div>
+        <div id="grid" class="grid">
+            <!-- Cards will be injected here -->
+        </div>
+    </div>
+
+    <script>
+        // Auto-detect GitHub Pages environment for any fork
+        let username = "Pain-Labs";
+        let repo = "extension-tracker";
+
+        if (window.location.hostname.includes('github.io')) {
+            username = window.location.hostname.split('.')[0];
+            const pathParts = window.location.pathname.split('/').filter(p => p);
+            if (pathParts.length > 0) {
+                repo = pathParts[0];
+            }
+        }
+
+        document.getElementById('repo-info').textContent = `Tracking statistics for ${username}/${repo}`;
+
+        // Fetch config from the main branch
+        const configUrl = `https://raw.githubusercontent.com/${username}/${repo}/main/config/extensions.json`;
+
+        async function loadDashboard() {
+            try {
+                const response = await fetch(configUrl);
+                if (!response.ok) throw new Error('Failed to fetch config');
+
+                const extensions = await response.json();
+                const grid = document.getElementById('grid');
+                document.getElementById('loading').style.display = 'none';
+
+                extensions.forEach((ext, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.style.animationDelay = `${index * 0.1}s`;
+
+                    let repoHtml = '';
+                    if (ext.repository) {
+                        repoHtml = `<a href="${ext.repository}" target="_blank" rel="noopener noreferrer" class="repo-link">GitHub</a>`;
+                    }
+
+                    // Dynamically generate image tags for each potential platform
+                    const platforms = ['marketplace', 'openvsx'];
+                    const chartsHtml = platforms.map(platform => `
+                        <div class="chart-container">
+                            <img src="${ext.key}-${platform}.svg" 
+                                 class="chart-img" 
+                                 alt="${ext.displayName || ext.key} ${platform} trend"
+                                 onload="this.parentElement.style.setProperty('--bg', 'transparent')"
+                                 onerror="this.parentElement.classList.add('error'); this.classList.add('error');">
+                        </div>
+                    `).join('');
+
+                    card.innerHTML = `
+                        <div class="card-header">
+                            <div>
+                                <h2 class="card-title">${ext.displayName || ext.key}</h2>
+                                <p class="card-subtitle">${ext.key}</p>
+                            </div>
+                            ${repoHtml}
+                        </div>
+                        <div class="charts">
+                            ${chartsHtml}
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            } catch (error) {
+                document.getElementById('loading').textContent = 'Error loading configuration. Ensure extensions.json exists on the main branch.';
+                console.error(error);
+            }
+        }
+
+        loadDashboard();
+    </script>
+</body>
+
+</html>
