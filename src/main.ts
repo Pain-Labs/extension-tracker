@@ -47,6 +47,7 @@ function applyShard(tasks: SourceConfig[], shardIndex: number, shardTotal: numbe
 }
 
 async function collectTask(task: SourceConfig, snapshotDate: string, fetchedAt: string): Promise<CollectResult> {
+  console.log(`[collectTask] Starting task: ${task.key} on platform ${task.platform}`);
   const filePath = dataFilePath(task.key, task.platform);
   const existingSnapshots = await readJsonl<Snapshot>(filePath);
 
@@ -66,6 +67,8 @@ async function collectTask(task: SourceConfig, snapshotDate: string, fetchedAt: 
 
     await writePlatformChart(task.key, task.platform, snapshots);
 
+    console.log(`[collectTask] Completed task: ${task.key} on platform ${task.platform} (written: ${!alreadyExists}, skipped: ${alreadyExists})`);
+
     return {
       snapshot,
       written: !alreadyExists,
@@ -74,6 +77,7 @@ async function collectTask(task: SourceConfig, snapshotDate: string, fetchedAt: 
       platform: task.platform,
     };
   } catch (error) {
+    console.error(`[collectTask] Failed task: ${task.key} on platform ${task.platform}. Error:`, error);
     if (existingSnapshots.length > 0) {
       await writePlatformChart(task.key, task.platform, existingSnapshots);
     }

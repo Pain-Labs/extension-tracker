@@ -10,6 +10,8 @@ interface Bucket {
   tokens: number;
   lastRefill: number; // ms (Date.now())
   rps: number;
+  /** Maximum token capacity. Always >= 1 so a single request can always be served. */
+  capacity: number;
 }
 
 const buckets = new Map<string, Bucket>();
@@ -50,7 +52,10 @@ function getBucket(host: string): Bucket {
     return existing;
   }
   const rps = HOST_RPS[host] ?? DEFAULT_RPS;
-  const bucket: Bucket = { tokens: rps, lastRefill: Date.now(), rps };
+  // Capacity is decoupled from rps: always at least 1 so that hosts with
+  // rps < 1 (e.g. hub.docker.com at 0.5) can still serve a single token.
+  const capacity = Math.max(1, rps);
+  const bucket: Bucket = { tokens: capacity, lastRefill: Date.now(), rps, capacity };
   buckets.set(host, bucket);
   return bucket;
 }
@@ -58,7 +63,7 @@ function getBucket(host: string): Bucket {
 function refill(bucket: Bucket): void {
   const now = Date.now();
   const elapsed = (now - bucket.lastRefill) / 1000; // seconds
-  bucket.tokens = Math.min(bucket.rps, bucket.tokens + elapsed * bucket.rps);
+  bucket.tokens = Math.min(bucket.capacity, bucket.tokens + elapsed * bucket.rps);
   bucket.lastRefill = now;
 }
 
