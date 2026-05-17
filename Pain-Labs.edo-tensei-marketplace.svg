@@ -10,7 +10,7 @@
   <line x1="96" y1="86.0" x2="886" y2="86.0" stroke="#e5e7eb" stroke-width="1"/><text x="82" y="91.0" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#111827">200</text>
   <path d="M96,86 L96,456 L886,456" fill="none" stroke="#111827" stroke-width="3" stroke-linecap="round"/>
   <circle cx="491.0" cy="446.8" r="6" fill="#2563eb"/><text x="503.0" y="436.8" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#2563eb">5</text>
-  <circle cx="491.0" cy="165.6" r="6" fill="#ef3b20"/><text x="503.0" y="155.6" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#ef3b20">157</text>
+  <circle cx="491.0" cy="161.8" r="6" fill="#ef3b20"/><text x="503.0" y="151.8" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#ef3b20">159</text>
   <text x="491.0" y="484" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#111827">May 17</text>
   <text x="491" y="532" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="600" fill="#111827">Date</text>
   <text transform="translate(28 271) rotate(-90)" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="600" fill="#111827">Marketplace count</text>
