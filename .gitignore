@@ -5,5 +5,5 @@ coverage/
 *.log
 .vscode/virtualTab.json
 *.csv
-output/charts/
+output/
 .idea/

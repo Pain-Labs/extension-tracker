@@ -495,7 +495,35 @@
         const PLATFORMS = [
             { id: "marketplace", label: "VS Code Marketplace" },
             { id: "openvsx", label: "Open VSX Registry" },
+            { id: "chrome", label: "Chrome Web Store" },
+            { id: "firefox", label: "Mozilla Add-ons" },
+            { id: "edge", label: "Microsoft Edge Add-ons" },
+            { id: "jetbrains", label: "JetBrains Marketplace" },
+            { id: "raycast", label: "Raycast Store" },
+            { id: "npm", label: "npm Registry" },
+            { id: "docker", label: "Docker Hub" },
+            { id: "github", label: "GitHub Releases" },
         ];
+
+        function getPlatformFromUrl(rawUrl) {
+            try {
+                const url = new URL(rawUrl);
+                const host = url.hostname.toLowerCase();
+                if (host === "marketplace.visualstudio.com") return "marketplace";
+                if (host === "open-vsx.org") return "openvsx";
+                if (host === "chromewebstore.google.com") return "chrome";
+                if (host === "addons.mozilla.org") return "firefox";
+                if (host === "microsoftedge.microsoft.com") return "edge";
+                if (host === "plugins.jetbrains.com") return "jetbrains";
+                if (host.includes("raycast.com")) return "raycast";
+                if (host.includes("npmjs.com")) return "npm";
+                if (host.includes("hub.docker.com")) return "docker";
+                if (host === "github.com") return "github";
+            } catch (e) {
+                console.error("Invalid URL in config:", rawUrl, e);
+            }
+            return null;
+        }
 
         // ── SVG icons ───────────────────────────────────────────────────
         const iconCopy = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`;
@@ -537,8 +565,12 @@
                 linksHtml += `<a href="${ext.repository}" target="_blank" rel="noopener noreferrer" class="pill-link">GitHub</a>`;
             }
 
+            // Dynamically identify platforms specified for this extension
+            const trackedPlatformIds = (ext.urls || []).map(getPlatformFromUrl).filter(Boolean);
+            const activePlatforms = PLATFORMS.filter(p => trackedPlatformIds.includes(p.id));
+
             let platformsHtml = "";
-            for (const platform of PLATFORMS) {
+            for (const platform of activePlatforms) {
                 const altText = `${displayName} ${platform.label} trend`;
                 const s = snippets(ext.key, platform.id, altText);
                 const imgId = `img-${ext.key}-${platform.id}`.replace(/[^a-z0-9-]/gi, "_");

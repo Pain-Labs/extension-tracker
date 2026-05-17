@@ -1,0 +1,124 @@
+name: Collect Analytics
+
+on:
+  schedule:
+    - cron: "0 1 * * *" # UTC 01:00 = Asia/Taipei 09:00
+  workflow_dispatch:
+    inputs:
+      platform:
+        description: 'Select platform to collect (default: all)'
+        required: false
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - marketplace
+          - openvsx
+          - firefox
+          - jetbrains
+          - npm
+          - docker
+          - github
+
+permissions:
+  contents: write
+
+concurrency:
+  group: extension-tracker-analytics
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    name: "Collect Shard ${{ matrix.shard }} / ${{ strategy.job-total }}"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Each shard processes 1/N of the URL list (by index % N).
+        # Increase to [0,1,2,3,4] when extensions.json exceeds ~50 entries,
+        # and update --shard=X/3 → --shard=X/5 in the collect step below.
+        shard: [0, 1, 2]
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Checkout historical data
+        uses: actions/checkout@v4
+        with:
+          ref: data
+          path: temp-data
+          fetch-depth: 1
+
+      - name: Move historical data to output
+        run: |
+          mkdir -p output/data
+          if [ -d "temp-data/output/data" ]; then
+            cp -r temp-data/output/data/. output/data/
+          fi
+          rm -rf temp-data
+
+      - name: Collect all platforms analytics (shard ${{ matrix.shard }}/3)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "${{ github.event.inputs.platform }}" != "" ] && [ "${{ github.event.inputs.platform }}" != "all" ]; then
+            npm run collect -- --platform=${{ github.event.inputs.platform }} --shard=${{ matrix.shard }}/3
+          else
+            npm run collect -- --shard=${{ matrix.shard }}/3
+          fi
+
+      - name: Upload shard output
+        uses: actions/upload-artifact@v4
+        with:
+          name: analytics-shard-${{ matrix.shard }}
+          path: output/
+          retention-days: 1
+
+  commit:
+    name: Merge shards and commit
+    runs-on: ubuntu-latest
+    needs: collect
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: data
+          fetch-depth: 1
+
+      - name: Download all shard outputs
+        uses: actions/download-artifact@v4
+        with:
+          pattern: analytics-shard-*
+          path: output/
+          merge-multiple: true
+
+      - name: Commit data to data branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add output/data
+          git diff --staged --quiet || git commit -m "data: analytics snapshot $(date -u +%Y-%m-%d)"
+          git pull --rebase origin data
+          git push
+
+      - name: Prepare dashboard
+        run: |
+          mkdir -p output/charts
+          curl -sL https://raw.githubusercontent.com/${{ github.repository }}/main/public/index.html -o output/charts/index.html || echo "No dashboard found"
+
+      - name: Deploy charts to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output/charts
+          keep_files: true

@@ -1,4 +1,11 @@
-export type Platform = "marketplace" | "openvsx";
+export type Platform =
+  | "marketplace"
+  | "openvsx"
+  | "firefox"
+  | "jetbrains"
+  | "npm"
+  | "docker"
+  | "github";
 
 export interface ExtensionConfig {
   key: string;

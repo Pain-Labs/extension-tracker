@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import { fetchMarketplaceSnapshot } from "./collectors/marketplace.js";
 import { fetchOpenVsxSnapshot } from "./collectors/openVsx.js";
+import { fetchMultiEcosystemSnapshot } from "./collectors/multiEcosystem.js";
 import { loadExtensions, platformsForSources, resolveSources } from "./config.js";
 import { dataFilePath } from "./paths.js";
 import { writePlatformChart } from "./charts.js";
@@ -52,7 +53,9 @@ async function collectTask(task: SourceConfig, snapshotDate: string, fetchedAt: 
   try {
     const snapshot = task.platform === "marketplace"
       ? await fetchMarketplaceSnapshot(task, snapshotDate, fetchedAt)
-      : await fetchOpenVsxSnapshot(task, snapshotDate, fetchedAt);
+      : task.platform === "openvsx"
+        ? await fetchOpenVsxSnapshot(task, snapshotDate, fetchedAt)
+        : await fetchMultiEcosystemSnapshot(task, snapshotDate, fetchedAt);
 
     const alreadyExists = existingSnapshots.some((candidate) => candidate.snapshot_date === snapshot.snapshot_date);
     const snapshots = alreadyExists ? existingSnapshots : [...existingSnapshots, snapshot];
@@ -127,8 +130,18 @@ function readPlatformFilter(args: string[]): Platform | null {
     return null;
   }
 
-  if (value === "marketplace" || value === "openvsx") {
-    return value;
+  const validPlatforms: Platform[] = [
+    "marketplace",
+    "openvsx",
+    "firefox",
+    "jetbrains",
+    "npm",
+    "docker",
+    "github",
+  ];
+
+  if (validPlatforms.includes(value as Platform)) {
+    return value as Platform;
   }
 
   throw new Error(`Unsupported platform: ${value}`);

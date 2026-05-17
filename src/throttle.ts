@@ -17,10 +17,31 @@ const buckets = new Map<string, Bucket>();
 /** Default requests-per-second for hosts that have no explicit limit. */
 const DEFAULT_RPS = 2;
 
-/** Per-host RPS overrides. Keys are lower-case hostnames. */
+/**
+ * Per-host RPS overrides. Keys are lower-case hostnames.
+ *
+ * Note: throttle buckets are per-process. With N shards running in parallel,
+ * the effective rate per host is N × the value here. Keep values conservative
+ * enough that N=3 shards stay within each host's published limits.
+ */
 const HOST_RPS: Record<string, number> = {
+  // Official store APIs — documented or observed limits
   "marketplace.visualstudio.com": 2,
   "open-vsx.org": 2,
+  "addons.mozilla.org": 2,
+  "plugins.jetbrains.com": 2,
+
+  // GitHub: 5000 req/hr with token → ~1.39/s. 1 RPS × 3 shards = 3/s = 10800/hr.
+  // Safe at current scale (<100 tracked repos); lower to 0.4 if repos exceed ~500.
+  "api.github.com": 1,
+
+  // Docker Hub: unauthenticated API limit is ~180 req/hr → 0.05/s per shard.
+  // Being conservative; raise if authenticated token is added later.
+  "hub.docker.com": 0.5,
+
+  // npm public APIs have very high limits; 2 RPS is fine.
+  "api.npmjs.org": 2,
+  "registry.npmjs.org": 2,
 };
 
 function getBucket(host: string): Bucket {

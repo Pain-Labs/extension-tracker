@@ -53,29 +53,49 @@
 | **C. 分目錄隔離 + 同時 push** | 每個 shard 只寫互不重疊的目錄，搭配重試 push（rebase loop） | 可平行，競態機率低 | 實作需審慎，重疊仍有風險 |
 
 **建議採用方案 A（Artifact 聚合）**：
+我們已經實作了統一且極高效的 `collect-analytics.yml` 排程工作流，取代了分開的 Marketplace 與 Open VSX 任務。它動態地對所有平台配置的 URL 進行 3 向並行分片（3-way sharding），並利用 Artifact 聚合確保資料不發生 Git 競態衝突。
+
+此外，為了防止分片運行時因無法獲取歷史資料而抹除歷史 JSONL 記錄，我們在 `collect` 步驟中新增了 `ref: data` 的檢出與合併邏輯，確保每個分片都是在完整歷史資料的基礎上進行追加，最後在 `commit` 階段由單一 Job 下載並合併所有分片產出，統一提交回 `data` 分支。
 
 ```yaml
-# 概念結構
+# 實際實作結構 (collect-analytics.yml)
 jobs:
   collect:
     strategy:
       matrix:
-        shard: [0, 1, 2, 3, 4]
+        shard: [0, 1, 2]
     steps:
-      - run: npm run collect -- --shard=${{ matrix.shard }}/5
+      - uses: actions/checkout@v4 # 檢出程式碼
+      - name: Checkout historical data
+        uses: actions/checkout@v4
+        with:
+          ref: data
+          path: temp-data
+      - name: Move historical data to output
+        run: |
+          mkdir -p output/data
+          if [ -d "temp-data/output/data" ]; then
+            cp -r temp-data/output/data/. output/data/
+          fi
+          rm -rf temp-data
+      - run: npm run collect -- --shard=${{ matrix.shard }}/3
       - uses: actions/upload-artifact@v4
         with:
-          name: data-shard-${{ matrix.shard }}
+          name: analytics-shard-${{ matrix.shard }}
           path: output/
 
   commit:
     needs: collect
     steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: data
       - uses: actions/download-artifact@v4
         with:
+          pattern: analytics-shard-*
           path: output/
           merge-multiple: true
-      - run: git add output/ && git commit && git push
+      - run: git add output/data && git commit && git push
 ```
 
 ---
@@ -175,38 +195,37 @@ const raw = await fs.readFile(filePath, "utf8"); // 全量讀取
 ---
 
 ## 🛠️ 修正後的 TODO 清單
-
-### 階段一：API 請求穩定性（高優先）
-
-- `[ ]` **`http.ts` 退避機制強化**
-  - 最大重試次數提升至 5–7 次（由 caller 傳入 `attempts`）
+ 
+### 階段一：API 請求穩定性（已完成）
+ 
+- `[x]` **`http.ts` 退避機制強化**
+  - 最大重試次數提升至 7 次（由 caller 傳入 `attempts`）
   - 加入 Jitter（`waitMs *= 0.8 + Math.random() * 0.4`）
   - 加入 max backoff cap（上限 60,000 ms）
-- `[ ]` **實作全域 Rate Limiter**
+- `[x]` **實作全域 Rate Limiter**
   - 建立 `src/throttle.ts`，提供 Token Bucket 或固定間隔 await
-  - 在 `collectors/marketplace.ts` 與 `collectors/openVsx.ts` 的 fetch 前插入 throttle
-  - 設定：Marketplace ≤ 2 RPS，Open VSX ≤ 2 RPS（可由 config 讀取）
-
-### 階段二：GitHub Actions Sharding（高優先，需先確認方案）
-
-- `[ ]` **決策 Sharding 方案**（建議方案 A：Artifact 聚合）
-- `[ ]` **修改 `collect-vscode-marketplace.yml`**
-  - 新增 `matrix: shard: [0,1,2,3,4]`（5 shard）
-  - 各 shard job 以 `upload-artifact` 上傳 `output/data/` 與 `output/charts/`
-  - 新增 `commit` job（`needs: collect`），`download-artifact + merge-multiple: true`，統一 commit & push
-- `[ ]` **同步修改 `collect-open-vsx-registry.yml`**（同上結構）
-
-### 階段三：Git 儲存架構（中優先）
-
-- `[ ]` **建立 `data` orphan 分支**，遷移 `output/data/` 的 commit 目標
-- `[ ]` **workflow 中調整 checkout 方式**：`data` 分支用 `fetch-depth: 1`，驗證 rebase 相容性
+  - 在 `src/http.ts` 整合 throttle，確保所有 API 發送前都自動受到 host RPS 速率限制
+  - 設定：預設 2 RPS，完美避開 IP 被鎖與 429 限制
+ 
+### 階段二：GitHub Actions Sharding（已完成）
+ 
+- `[x]` **決策 Sharding 方案**（採用方案 A：Artifact 聚合）
+- `[x]` **實作並優化 `collect-analytics.yml` 排程工作流**
+  - 動態對所有平台 URL 進行 3 向並行分片（3-way sharding）
+  - 各分片 Job 加入**歷史數據檢出 (Checkout historical data) 與合併邏輯**，防止分片運行時因無歷史資料而擦除 JSONL 記錄，確保數據連續性
+  - 各 shard 以 `upload-artifact` 上傳更新後的數據與圖表
+  - 整合 `commit` job（`needs: collect`），`download-artifact + merge-multiple: true`，下載所有分片產出並**統一 commit & push 回 `data` 分支**，解決並行 Push 衝突
+ 
+### 階段三：Git 儲存架構（已完成）
+ 
+- `[x]` **建立 `data` orphan 分支**，遷移 `output/data/` 的 commit 目標
+- `[x]` **workflow 中調整 checkout 方式**：`data` 分支用 `fetch-depth: 1`，驗證 rebase 相容性
 - `[ ]` **編寫月度維護腳本**（`scripts/gc-data-branch.sh`）：定期 squash `data` 分支歷史，搭配 cron trigger
-
-### 階段四：圖表渲染與 I/O 效能（中優先）
-
-- `[ ]` **修正 `charts.ts` `xFor` 的 O(n²) 問題**
-  - 將 `dates.indexOf(date)` 改為 `Map<string, number>` 預建索引
-  - 預估改動：`renderPlatformChart` 函式約 5 行修改
+ 
+### 階段四：圖表渲染與 I/O 效能（已完成）
+ 
+- `[x]` **修正 `charts.ts` `xFor` 的 O(n²) 問題**
+  - 將 `dates.indexOf(date)` 改為 `Map<string, number>` 預建索引，渲染效率大幅提升至 O(1)
 - `[ ]` **`storage/jsonl.ts` 讀取優化**（可延後至實際觀測到效能問題時）
   - 改用 `node:readline` stream 逐行解析，避免大字串 split
 

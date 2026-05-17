@@ -51,30 +51,27 @@ Fields:
 
 Currently supported URL formats:
 
-| Provider | URL format |
-|---|---|
-| VS Code Marketplace | `https://marketplace.visualstudio.com/items?itemName=<publisher>.<name>` |
-| Open VSX Registry | `https://open-vsx.org/extension/<namespace>/<name>` |
+| Provider | URL format | Data source |
+| --- | --- | --- |
+| VS Code Marketplace | `https://marketplace.visualstudio.com/items?itemName=<publisher>.<name>` | Official REST API |
+| Open VSX Registry | `https://open-vsx.org/extension/<namespace>/<name>` | Official REST API |
+| Mozilla Add-ons (Firefox) | `https://addons.mozilla.org/en-US/firefox/addon/<slug>/` | Official REST API |
+| JetBrains Marketplace | `https://plugins.jetbrains.com/plugin/<id>-<name>` | Official REST API |
+| npm Registry | `https://www.npmjs.com/package/<name>` | Official downloads API |
+| Docker Hub | `https://hub.docker.com/r/<namespace>/<name>` or `https://hub.docker.com/_/<name>` | Official REST API |
+| GitHub Releases | `https://github.com/<owner>/<repo>` | Official REST API |
 
-### Planned: Chrome Web Store Support
+### Not Yet Supported
 
-To support Chrome Web Store in the future, the architecture requires two new additions while keeping the user-facing `config/extensions.json` identical:
+The following platforms do not have a public stats API and their store pages are JavaScript-rendered SPAs. HTML scraping is unreliable in CI without a headless browser, which is not practical on GitHub Actions free runners.
 
-1. **URL Parser**: Recognize `https://chromewebstore.google.com/detail/<name>/<extension_id>` to extract the extension ID.
-2. **Collector**: Since Chrome Web Store doesn't provide a straightforward public JSON API for stats, the collector will likely need to fetch the HTML page and parse the user count, rating, and version from the DOM structure or embedded script metadata.
+| Platform | Reason |
+| --- | --- |
+| **Chrome Web Store** | No public API; page data loaded client-side via JS |
+| **Microsoft Edge Add-ons** | No public API; page data loaded client-side via JS |
+| **Raycast Store** | No public API; macOS-only SPA with no server-rendered stats |
 
-### Other Potential Marketplaces
-
-The URL-based configuration makes it trivial to expand tracking to other ecosystems. Potential future marketplaces include:
-
-- **Chrome Web Store** (Browser extensions)
-- **Mozilla Add-ons (AMO)** (Firefox extensions)
-- **Microsoft Edge Add-ons** (Edge extensions)
-- **JetBrains Marketplace** (IntelliJ, WebStorm, PyCharm plugins)
-- **Raycast Store** (Raycast extensions)
-- **npm Registry** (CLI tools or library download stats)
-- **Docker Hub** (Container image pulls)
-- **GitHub Releases** (Download counts for pre-compiled binaries)
+These platforms will be reconsidered if they expose a public stats API in the future.
 
 ## Tracked Products
 
