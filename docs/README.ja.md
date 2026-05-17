@@ -1,6 +1,6 @@
 # extension-tracker
 
-[English](../README.md) | [繁體中文](README.zh-TW.md) | [简体中文](README.zh-CN.md) | [日本語](README.ja.md)
+[English](../README.md) | [繁體中文](README.zh-TW.md) | [简体中文](README.zh-CN.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Español](README.es.md)
 
 拡張機能向けの毎日の公開マーケットプレイス分析トラッカー。
 
@@ -56,6 +56,52 @@ npm run query -- latest
 | VS Code Marketplace | `https://marketplace.visualstudio.com/items?itemName=<publisher>.<name>` |
 | Open VSX Registry | `https://open-vsx.org/extension/<namespace>/<name>` |
 
+### 今後の予定：Chrome ウェブストア (Chrome Web Store) のサポート
+
+将来的に Chrome ウェブストアをサポートするため、ユーザー向けの設定ファイル `config/extensions.json` の形式を維持したまま、以下の 2 つの機能を追加する予定です：
+
+1. **URL パーサー**：`https://chromewebstore.google.com/detail/<name>/<extension_id>` 形式を認識し、拡張機能 ID を抽出します。
+2. **コレクター**：Chrome ウェブストアには統計情報用の直接的な公開 JSON API がないため、コレクターは HTML ページを取得し、DOM 構造や埋め込まれたスクリプトのメタデータからユーザー数、評価、バージョンを解析する必要があります。
+
+### その他の潜在的なマーケットプレイス
+
+URL ベースの設定方式により、他のエコシステムへの追跡の拡張が非常に容易になります。将来サポートされる可能性のある市場には以下が含まれます：
+
+- **Chrome Web Store**（ブラウザ拡張機能）
+- **Mozilla Add-ons (AMO)**（Firefox 拡張機能）
+- **Microsoft Edge Add-ons**（Edge 拡張機能）
+- **JetBrains Marketplace**（IntelliJ、WebStorm、PyCharm プラグイン）
+- **Raycast Store**（Raycast 拡張機能）
+- **npm Registry**（CLI ツールやライブラリのダウンロード統計）
+- **Docker Hub**（コンテナイメージのプル回数）
+- **GitHub Releases**（コンパイル済みバイナリのダウンロード回数）
+
+## 追跡対象の製品 (Tracked Products)
+
+| 製品キー (Product key) | リポジトリ (Repository) |
+|---|---|
+| `winterdrive.virtual-tabs` | <https://github.com/winterdrive/vscode-virtual-tabs> |
+| `winterdrive.quick-prompt` | <https://github.com/winterdrive/vscode-quick-prompt> |
+| `Pain-Labs.edo-tensei` | <https://github.com/Pain-Labs/Edo-Tensei> |
+
+## コマンド (Commands)
+
+```bash
+npm install
+npm run build
+npm test
+npm run collect
+npm run collect -- marketplace
+npm run collect -- openvsx
+npm run collect -- marketplace --shard 0/10 --concurrency 5
+npm run query -- latest
+npm run query -- trend winterdrive.virtual-tabs --days 30
+npm run query -- releases winterdrive.virtual-tabs
+npm run query -- export snapshots.csv
+```
+
+`npm run collect` は設定ファイル内のサポートされているすべてのプロバイダー URL を収集します。プロバイダー固有のワークフローはプラットフォーム引数を使用するため、各データソースは独立して失敗、再試行、またはスケーリングできます。
+
 ## スケーリングとアーキテクチャ (Scaling & Architecture)
 
 大規模な設定（例：1000 拡張機能 × 1000 日間の履歴追跡）に対応するため、このリポジトリにはいくつかの堅牢なスケーリングメカニズムが実装されています。
@@ -65,6 +111,15 @@ npm run query -- latest
 3. **アーティファクト集約 (Artifact Aggregation)**: 並列ジョブはそれぞれ独立した `output/` ディレクトリをアーティファクトとしてアップロードします。最後に専用の `commit` ジョブがすべてのアーティファクトをダウンロードし、1 回のコミットでプッシュすることで Git プッシュの競合を完全に排除します。
 4. **データ専用ブランチ (Data Orphan Branch)**: Git リポジトリが時間とともに肥大化するのを防ぐため、履歴 JSONL データは `main` ではなく完全に独立した `data` ブランチにコミットされます。
 5. **履歴 GC (History GC)**: 月次メンテナンワークフロー (`gc-data-branch.yml`) が、180 日より古い `data` ブランチのコミットを自動的にスカッシュ (Squash) し、リポジトリを極めて軽量に保ちます。
+
+ローカルでシャーディングを実行することもできます：
+
+```bash
+npm run collect -- marketplace --shard 0/10
+npm run collect -- marketplace --shard 1/10
+```
+
+コレクターは `--concurrency` を使用して API の同時実行数を制限します（デフォルトは `5`）。そのため、大規模な設定でもすべてのリクエストを一度に送信することはありません。
 
 ## 出力ファイル
 
@@ -81,6 +136,23 @@ output/
 ```
 
 集約された `snapshots.jsonl` は生成されません。1000 個の製品を追跡する場合でも、各製品/プラットフォームのシリーズは独立したままであり、個別に検査、再生成、または修復できます。
+
+### チャートの埋め込み方法 (GitHub Pages)
+
+Git リポジトリの肥大化を防ぐため、生成された SVG チャートは `main` ブランチには**コミットされません**。代わりに、GitHub Actions が自動的にチャートを専用の `gh-pages` ブランチにデプロイします。
+
+チャートを公開するには：
+
+1. リポジトリが **Public (公開)** であることを確認します。
+2. **Settings > Pages** に移動します。
+3. **Build and deployment** の下で、Source を **Deploy from a branch** に設定します。
+4. Branch として **`gh-pages`** と `/ (root)` を選択し、**Save** をクリックします。
+
+有効になると、以下のマークダウン構文を使用して、毎日自動更新されるチャートを任意の場所に埋め込むことができます：
+
+```markdown
+![Marketplace トレンド](https://<ユーザー名>.github.io/<リポジトリ名>/<製品キー>-marketplace.svg)
+```
 
 ## ワークフロー (Workflows)
 

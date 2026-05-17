@@ -77,6 +77,11 @@ jobs:
           git pull --rebase origin data
           git push
 
+      - name: Prepare dashboard
+        run: |
+          mkdir -p output/charts
+          curl -sL https://raw.githubusercontent.com/${{ github.repository }}/main/public/index.html -o output/charts/index.html || echo "No dashboard found"
+
       - name: Deploy charts to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
