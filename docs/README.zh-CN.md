@@ -36,6 +36,8 @@
 
    ![从 Actions 选项卡手动执行工作流](assets/05_run_workflow.png)
 
+   > **注意：** 数据收集从首次执行起算，不会回补执行前的历史数据。
+
 ## 配置
 
 [config/extensions.json](../config/extensions.json) 中的每个条目描述了一个产品。您只需提供一组稳定的 `key` 及要追踪的公开市场 URL 即可。
@@ -90,11 +92,16 @@
 
 ## 追踪的产品 (Tracked Products)
 
+> 以下项目为**示范用途**——每个支持的平台各举一例。Fork 本存储库后，请替换为您自己的产品以开始追踪。
+
 | 产品键值 (Product key) | 存储库 (Repository) |
 |---|---|
-| `winterdrive.virtual-tabs` | <https://github.com/winterdrive/vscode-virtual-tabs> |
-| `winterdrive.quick-prompt` | <https://github.com/winterdrive/vscode-quick-prompt> |
 | `Pain-Labs.edo-tensei` | <https://github.com/Pain-Labs/Edo-Tensei> |
+| `ublock-origin-firefox` | <https://github.com/gorhill/uBlock> |
+| `ideavim-jetbrains` | <https://github.com/JetBrains/ideavim> |
+| `typescript-npm` | <https://github.com/microsoft/TypeScript> |
+| `ubuntu-docker` | <https://hub.docker.com/_/ubuntu> |
+| `ripgrep-github` | <https://github.com/BurntSushi/ripgrep> |
 
 ## 指令 (Commands)
 

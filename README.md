@@ -36,6 +36,8 @@ Daily public marketplace analytics for extensions.
 
    ![Run workflow manually from the Actions tab](docs/assets/05_run_workflow.png)
 
+   > **Note:** Data collection starts from this first run. There is no backfill for dates before your initial collection.
+
 ## Configuration
 
 Each entry in [config/extensions.json](config/extensions.json) describes one product. You only provide a stable `key` and the public marketplace URLs to track.
@@ -87,11 +89,16 @@ These platforms will be reconsidered if they expose a public stats API in the fu
 
 ## Tracked Products
 
+> The entries below are **demonstration examples** — one product per supported provider. Fork this repository and replace them with your own products to start tracking.
+
 | Product key | Repository |
 |---|---|
-| `winterdrive.virtual-tabs` | <https://github.com/winterdrive/vscode-virtual-tabs> |
-| `winterdrive.quick-prompt` | <https://github.com/winterdrive/vscode-quick-prompt> |
 | `Pain-Labs.edo-tensei` | <https://github.com/Pain-Labs/Edo-Tensei> |
+| `ublock-origin-firefox` | <https://github.com/gorhill/uBlock> |
+| `ideavim-jetbrains` | <https://github.com/JetBrains/ideavim> |
+| `typescript-npm` | <https://github.com/microsoft/TypeScript> |
+| `ubuntu-docker` | <https://hub.docker.com/_/ubuntu> |
+| `ripgrep-github` | <https://github.com/BurntSushi/ripgrep> |
 
 ## Commands
 

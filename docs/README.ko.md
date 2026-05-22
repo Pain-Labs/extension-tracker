@@ -36,6 +36,8 @@
 
    ![Actions 탭에서 워크플로우 수동 실행](assets/05_run_workflow.png)
 
+   > **참고:** 데이터 수집은 이 첫 번째 실행부터 시작됩니다. 최초 수집 이전 날짜에 대한 소급 수집은 지원되지 않습니다.
+
 ## 구성 (Configuration)
 
 [config/extensions.json](../config/extensions.json)의 각 항목은 하나의 제품을 설명합니다. 안정적인 `key`와 추적할 공개 마켓플레이스 URL만 제공하면 됩니다.
@@ -90,11 +92,16 @@ URL 기반 구성 방식을 사용하면 다른 생태계로 추적을 확장하
 
 ## 추적되는 제품 (Tracked Products)
 
+> 아래 항목은 **데모 예시**입니다 — 지원되는 각 제공자별로 하나씩 예시 제품을 보여줍니다. 이 리포지토리를 포크한 후 자신의 제품으로 교체하여 추적을 시작하세요.
+
 | 제품 키 (Product key) | 리포지토리 (Repository) |
 |---|---|
-| `winterdrive.virtual-tabs` | <https://github.com/winterdrive/vscode-virtual-tabs> |
-| `winterdrive.quick-prompt` | <https://github.com/winterdrive/vscode-quick-prompt> |
 | `Pain-Labs.edo-tensei` | <https://github.com/Pain-Labs/Edo-Tensei> |
+| `ublock-origin-firefox` | <https://github.com/gorhill/uBlock> |
+| `ideavim-jetbrains` | <https://github.com/JetBrains/ideavim> |
+| `typescript-npm` | <https://github.com/microsoft/TypeScript> |
+| `ubuntu-docker` | <https://hub.docker.com/_/ubuntu> |
+| `ripgrep-github` | <https://github.com/BurntSushi/ripgrep> |
 
 ## 명령어 (Commands)
 
@@ -114,7 +121,7 @@ npm 기 query -- export snapshots.csv
 
 `npm run collect`는 구성 파일에서 지원되는 모든 제공자 URL을 수집합니다. 제공자 전용 워크플로우는 플랫폼 인수를 사용하여 각 데이터 소스가 독립적으로 실패하거나 재시도되거나 확장될 수 있도록 합니다.
 
-## 스케일링 및 아키텍처 (Scaling & Architecture)
+## 출력 파일 (Outputs)
 
 생성된 모든 파일은 `output/` 디렉토리 아래에 저장됩니다:
 

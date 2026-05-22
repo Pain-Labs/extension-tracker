@@ -36,6 +36,8 @@
 
    ![從 Actions 頁籤手動執行工作流](assets/05_run_workflow.png)
 
+   > **注意：** 資料收集從首次執行起算，不會回補執行前的歷史數據。
+
 ## 設定
 
 [config/extensions.json](../config/extensions.json) 中的每個條目描述了一個產品。您只需提供一組穩定的 `key` 及要追蹤的公開市場 URL 即可。
@@ -90,11 +92,16 @@
 
 ## 追蹤的產品 (Tracked Products)
 
+> 以下項目為**示範用途**——每個支援的平台各舉一例。Fork 本儲存庫後，請替換為您自己的產品以開始追蹤。
+
 | 產品鍵值 (Product key) | 儲存庫 (Repository) |
 |---|---|
-| `winterdrive.virtual-tabs` | <https://github.com/winterdrive/vscode-virtual-tabs> |
-| `winterdrive.quick-prompt` | <https://github.com/winterdrive/vscode-quick-prompt> |
 | `Pain-Labs.edo-tensei` | <https://github.com/Pain-Labs/Edo-Tensei> |
+| `ublock-origin-firefox` | <https://github.com/gorhill/uBlock> |
+| `ideavim-jetbrains` | <https://github.com/JetBrains/ideavim> |
+| `typescript-npm` | <https://github.com/microsoft/TypeScript> |
+| `ubuntu-docker` | <https://hub.docker.com/_/ubuntu> |
+| `ripgrep-github` | <https://github.com/BurntSushi/ripgrep> |
 
 ## 指令 (Commands)
 

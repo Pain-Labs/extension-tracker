@@ -36,6 +36,8 @@ Rastreador analítico diario del mercado público para extensiones.
 
    ![Ejecutar el flujo de trabajo manualmente desde la pestaña Actions](assets/05_run_workflow.png)
 
+   > **Nota:** La recopilación de datos comienza desde esta primera ejecución. No se realiza relleno retroactivo de fechas anteriores a la recopilación inicial.
+
 ## Configuración
 
 Cada entrada en [config/extensions.json](../config/extensions.json) describe un producto. Solo necesitas proporcionar una `key` estable y las URL del mercado público a rastrear.
@@ -88,13 +90,18 @@ La configuración basada en URL hace que sea trivial expandir el seguimiento a o
 - **Docker Hub** (Descargas de imágenes de contenedores)
 - **GitHub Releases** (Recuentos de descargas para binarios precompilados)
 
-## Productos rastreadados (Tracked Products)
+## Productos rastreados (Tracked Products)
+
+> Las entradas a continuación son **ejemplos de demostración** — un producto por cada proveedor compatible. Haz un fork de este repositorio y reemplázalos con tus propios productos para comenzar a rastrear.
 
 | Clave de producto (Product key) | Repositorio (Repository) |
 |---|---|
-| `winterdrive.virtual-tabs` | <https://github.com/winterdrive/vscode-virtual-tabs> |
-| `winterdrive.quick-prompt` | <https://github.com/winterdrive/vscode-quick-prompt> |
 | `Pain-Labs.edo-tensei` | <https://github.com/Pain-Labs/Edo-Tensei> |
+| `ublock-origin-firefox` | <https://github.com/gorhill/uBlock> |
+| `ideavim-jetbrains` | <https://github.com/JetBrains/ideavim> |
+| `typescript-npm` | <https://github.com/microsoft/TypeScript> |
+| `ubuntu-docker` | <https://hub.docker.com/_/ubuntu> |
+| `ripgrep-github` | <https://github.com/BurntSushi/ripgrep> |
 
 ## Comandos (Commands)
 
@@ -114,7 +121,7 @@ npm run query -- export snapshots.csv
 
 `npm run collect` recopila las URL de cada proveedor compatible en la configuración. Los flujos de trabajo específicos del proveedor usan el argumento de plataforma para que cada fuente de datos pueda fallar, reintentar o escalar de forma independiente.
 
-## Escalabilidad y Arquitectura (Scaling & Architecture)
+## Archivos de salida (Outputs)
 
 Todos los archivos generados se encuentran bajo el directorio `output/`:
 
