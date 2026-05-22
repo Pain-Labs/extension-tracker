@@ -8,21 +8,33 @@ Rastreador analítico diario del mercado público para extensiones.
 
 ## Inicio rápido
 
-1. Haz un fork de este repositorio.
+1. Haz un fork de este repositorio. Luego actualiza la descripción del repositorio y la URL del sitio web para que apunten a tu propio GitHub Pages:
+
+   ![Actualizar la URL del sitio web del repositorio tras el fork](assets/02_url_rename.png)
+
 2. Edita [config/extensions.json](../config/extensions.json) con tus productos y las URL del mercado.
+
+   ![Editar config/extensions.json en GitHub](assets/03_edit_config_list.png)
+
 3. Ejecuta una comprobación local:
 
-```bash
-npm install
-npm run build
-npm test
-npm run collect
-npm run query -- latest
-```
+   ```bash
+   npm install
+   npm run build
+   npm test
+   npm run collect
+   npm run query -- latest
+   ```
 
-1. Confirma (commit) tu configuración junto con los datos base generados en `output/`.
-2. Habilita GitHub Actions en tu fork.
-3. Ejecuta los flujos de trabajo de los proveedores manualmente una vez desde la pestaña Actions; luego, dejarán de ejecutarse según el horario programado.
+4. Confirma (commit) tu configuración junto con los datos base generados en `output/`.
+
+5. Habilita GitHub Actions en tu fork.
+
+   ![Habilitar GitHub Actions en tu fork](assets/04_enbale_workflow.png)
+
+6. Ejecuta los flujos de trabajo de los proveedores manualmente una vez desde la pestaña Actions; luego, los horarios programados continuarán ejecutándose diariamente.
+
+   ![Ejecutar el flujo de trabajo manualmente desde la pestaña Actions](assets/05_run_workflow.png)
 
 ## Configuración
 
@@ -128,6 +140,8 @@ Para mostrar tus gráficos:
 2. Ve a **Settings > Pages**.
 3. En **Build and deployment**, selecciona **Deploy from a branch**.
 4. Elige la rama **`gh-pages`** y `/ (root)`, luego haz clic en **Save**.
+
+   ![Configuración de la rama en GitHub Pages](assets/01_github_page.png)
 
 Una vez habilitado, puedes incrustar tus gráficos (que se actualizan automáticamente todos los días) en cualquier archivo Markdown usando la sintaxis estándar para imágenes:
 

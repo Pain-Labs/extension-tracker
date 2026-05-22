@@ -8,21 +8,33 @@
 
 ## 快速开始
 
-1. Fork 本存储库。
+1. Fork 本存储库。接着将存储库描述与网站 URL 更新为指向您自己的 GitHub Pages：
+
+   ![Fork 后更新存储库网站 URL](assets/02_url_rename.png)
+
 2. 编辑 [config/extensions.json](../config/extensions.json) 填入您的产品名称与市场 URL。
+
+   ![在 GitHub 上编辑 config/extensions.json](assets/03_edit_config_list.png)
+
 3. 在本地执行检查：
 
-```bash
-npm install
-npm run build
-npm test
-npm run collect
-npm run query -- latest
-```
+   ```bash
+   npm install
+   npm run build
+   npm test
+   npm run collect
+   npm run query -- latest
+   ```
 
-1. 提交您的配置文件与生成的 `output/` 基准数据。
-2. 在您的 Fork 中启用 GitHub Actions。
-3. 从 Actions 选项卡手动执行一次供应商的工作流 (Workflows)，之后计划任务便会自动每日运行。
+4. 提交您的配置文件与生成的 `output/` 基准数据。
+
+5. 在您的 Fork 中启用 GitHub Actions。
+
+   ![在 Fork 中启用 GitHub Actions](assets/04_enbale_workflow.png)
+
+6. 从 Actions 选项卡手动执行一次供应商的工作流 (Workflows)，之后计划任务便会自动每日运行。
+
+   ![从 Actions 选项卡手动执行工作流](assets/05_run_workflow.png)
 
 ## 配置
 
@@ -147,6 +159,8 @@ output/
 2. 前往存储库的 **Settings > Pages**。
 3. 在 **Build and deployment** 下，将 Source 设为 **Deploy from a branch**。
 4. Branch 选择 **`gh-pages`** 与 `/ (root)`，然后点击 **Save**。
+
+   ![GitHub Pages 分支配置](assets/01_github_page.png)
 
 启用完成后，您就可以在任何 Markdown 文件中，使用以下语法嵌入会每日自动更新的趋势图：
 

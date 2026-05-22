@@ -8,21 +8,33 @@
 
 ## 빠른 시작 (Quick Start)
 
-1. 이 리포지토리를 포크합니다.
+1. 이 리포지토리를 포크합니다. 그런 다음 리포지토리 설명과 웹사이트 URL을 자신의 GitHub Pages로 업데이트합니다:
+
+   ![포크 후 리포지토리 웹사이트 URL 업데이트](assets/02_url_rename.png)
+
 2. [config/extensions.json](../config/extensions.json)을 편집하여 제품과 마켓플레이스 URL을 지정합니다.
+
+   ![GitHub에서 config/extensions.json 편집](assets/03_edit_config_list.png)
+
 3. 로컬에서 확인 작업을 실행합니다:
 
-```bash
-npm install
-npm run build
-npm test
-npm run collect
-npm run query -- latest
-```
+   ```bash
+   npm install
+   npm run build
+   npm test
+   npm run collect
+   npm run query -- latest
+   ```
 
-1. 구성 파일과 생성된 `output/` 기준 데이터를 커밋합니다.
-2. 포크한 리포지토리에서 GitHub Actions를 활성화합니다.
-3. Actions 탭에서 제공자 워크플로우를 수동으로 한 번 실행하면 이후부터는 예약된 일정에 따라 매일 실행됩니다.
+4. 구성 파일과 생성된 `output/` 기준 데이터를 커밋합니다.
+
+5. 포크한 리포지토리에서 GitHub Actions를 활성화합니다.
+
+   ![포크에서 GitHub Actions 활성화](assets/04_enbale_workflow.png)
+
+6. Actions 탭에서 제공자 워크플로우를 수동으로 한 번 실행하면 이후부터는 예약된 일정에 따라 매일 실행됩니다.
+
+   ![Actions 탭에서 워크플로우 수동 실행](assets/05_run_workflow.png)
 
 ## 구성 (Configuration)
 
@@ -128,6 +140,8 @@ Git 리포지토리가 비대해지는 것을 방지하기 위해 생성된 SVG 
 2. **Settings > Pages** 로 이동합니다.
 3. **Build and deployment** 아래에서 Source를 **Deploy from a branch** 로 선택합니다.
 4. Branch로 **`gh-pages`** 와 `/ (root)` 를 선택한 다음 **Save** 를 클릭합니다.
+
+   ![GitHub Pages 브랜치 설정](assets/01_github_page.png)
 
 활성화되면 다음 표준 이미지 마크다운 구문을 사용하여 매일 자동 업데이트되는 차트를 어디에나 삽입할 수 있습니다:
 
