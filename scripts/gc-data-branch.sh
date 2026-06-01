@@ -77,8 +77,15 @@ if [[ -z "$boundary_sha" ]]; then
   exit 0
 fi
 
-# Find how many commits are older than the boundary
-older_count=$(git rev-list --count HEAD..."$boundary_sha"^)
+# Check if boundary_sha has a parent; if not, it's the root commit and
+# all data is within the keep window — nothing to squash.
+if ! git rev-parse --verify "${boundary_sha}^" > /dev/null 2>&1; then
+  log "All commits are within the keep period — nothing to squash."
+  exit 0
+fi
+
+squash_tip=$(git rev-parse "${boundary_sha}^")
+older_count=$(git rev-list --count "$squash_tip")
 if [[ "$older_count" -le 0 ]]; then
   log "No commits older than $cutoff_date — nothing to squash."
   exit 0
@@ -90,19 +97,17 @@ log "Will squash $older_count old commit(s) into a single archive commit."
 # Squash via orphan re-root
 # ---------------------------------------------------------------------------
 
-# 1. Find the root commit (oldest ancestor) of the data branch
-root_sha=$(git rev-list --max-parents=0 HEAD)
+# 1. Record the tree at squash_tip (newest squashed commit) so that
+#    boundary_sha's diff applies cleanly on top of the new archive root.
+archive_tree=$(git rev-parse "${squash_tip}^{tree}")
 
-# 2. Record tree at the boundary's parent (the oldest commit we keep)
-archive_tree=$(git rev-parse "${boundary_sha}^{tree}")
-
-# 3. Create a new orphan root commit using the archived tree
+# 2. Create a new orphan root commit using the archived tree
 archive_sha=$(git commit-tree "$archive_tree" -m "chore: squash data archive (before $cutoff_date)")
 
 log "Archive root: $archive_sha"
 
-# 4. Rebase the recent commits (boundary_sha → HEAD) onto the new archive root
-git rebase --onto "$archive_sha" "${boundary_sha}^" HEAD
+# 3. Rebase the recent commits (boundary_sha → HEAD) onto the new archive root
+git rebase --onto "$archive_sha" "$squash_tip" HEAD
 
 log "Rebase complete. Force-pushing to $REMOTE/$BRANCH..."
 
