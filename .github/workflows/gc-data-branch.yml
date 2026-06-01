@@ -30,6 +30,18 @@ jobs:
           # Full history required for squash/rebase
           fetch-depth: 0
 
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Fetch GC script from main branch
+        run: |
+          git fetch origin main
+          mkdir -p scripts
+          git show origin/main:scripts/gc-data-branch.sh > scripts/gc-data-branch.sh
+          chmod +x scripts/gc-data-branch.sh
+
       - name: Run GC script
         env:
           GC_KEEP_DAYS: ${{ inputs.keep_days || '180' }}
