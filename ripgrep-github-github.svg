@@ -15,23 +15,24 @@
   <line x1="96" y1="112.1" x2="856" y2="111.3" stroke="#2c2a29" stroke-width="1" stroke-dasharray="6 4" opacity="0.2"/><text x="86" y="117.0" text-anchor="end" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="600" fill="#2c2a29">40M</text>
   <path d="M94.8,111.7 L94.7,456.8 L854.8,456.0" fill="none" stroke="#2c2a29" stroke-width="2.5" stroke-linecap="round"/>
   
-  <path d="M97.7,427.1 L139.8,423.7 L165.0,417.0 L208.8,408.4 L236.2,405.1 L258.1,404.1 L417.2,373.1 L439.8,370.1 L673.3,328.0 L853.7,292.1" fill="none" stroke="#ef3b20" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="96.0" cy="429.1" r="3.5" fill="#ef3b20"/>
-  <circle cx="142.1" cy="421.8" r="3.5" fill="#ef3b20"/>
-  <circle cx="165.1" cy="417.3" r="3.5" fill="#ef3b20"/>
-  <circle cx="211.2" cy="407.3" r="3.5" fill="#ef3b20"/>
-  <circle cx="234.2" cy="404.8" r="3.5" fill="#ef3b20"/>
-  <circle cx="257.2" cy="401.8" r="3.5" fill="#ef3b20"/>
-  <circle cx="418.4" cy="375.4" r="3.5" fill="#ef3b20"/>
-  <circle cx="441.5" cy="372.1" r="3.5" fill="#ef3b20"/>
-  <circle cx="671.8" cy="329.3" r="3.5" fill="#ef3b20"/>
-  <circle cx="856.0" cy="294.5" r="3.5" fill="#ef3b20"/>
-  <text x="776.0" y="284.5" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="700" fill="#ef3b20">32,509,827</text>
+  <path d="M97.7,426.4 L138.5,423.1 L163.0,416.4 L205.4,407.8 L232.1,404.4 L253.4,403.4 L407.7,372.6 L429.6,369.5 L656.4,327.5 L831.3,291.7 L856.5,288.0" fill="none" stroke="#ef3b20" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="96.0" cy="428.4" r="3.5" fill="#ef3b20"/>
+  <circle cx="140.7" cy="421.1" r="3.5" fill="#ef3b20"/>
+  <circle cx="163.1" cy="416.6" r="3.5" fill="#ef3b20"/>
+  <circle cx="207.8" cy="406.7" r="3.5" fill="#ef3b20"/>
+  <circle cx="230.1" cy="404.2" r="3.5" fill="#ef3b20"/>
+  <circle cx="252.5" cy="401.2" r="3.5" fill="#ef3b20"/>
+  <circle cx="408.9" cy="374.8" r="3.5" fill="#ef3b20"/>
+  <circle cx="431.3" cy="371.5" r="3.5" fill="#ef3b20"/>
+  <circle cx="654.8" cy="328.8" r="3.5" fill="#ef3b20"/>
+  <circle cx="833.6" cy="294.1" r="3.5" fill="#ef3b20"/>
+  <circle cx="856.0" cy="290.4" r="3.5" fill="#ef3b20"/>
+  <text x="776.0" y="280.4" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="700" fill="#ef3b20">32,662,347</text>
   <text x="96.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">May 17</text>
-  <text x="280.2" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">May 25</text>
-  <text x="487.5" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 3</text>
-  <text x="671.8" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 11</text>
-  <text x="856.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 19</text>
+  <text x="297.2" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">May 26</text>
+  <text x="476.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 3</text>
+  <text x="677.2" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 12</text>
+  <text x="856.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 20</text>
   <text x="476" y="546" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="17" font-weight="600" fill="#5c5a59">Date</text>
   <text transform="translate(22 284) rotate(-90)" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="17" font-weight="600" fill="#5c5a59">Release Downloads</text>
   
