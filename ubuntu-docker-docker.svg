@@ -15,24 +15,24 @@
   <line x1="96" y1="112.1" x2="856" y2="111.3" stroke="#2c2a29" stroke-width="1" stroke-dasharray="6 4" opacity="0.2"/><text x="86" y="117.0" text-anchor="end" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="600" fill="#2c2a29">10B</text>
   <path d="M94.8,111.7 L94.7,456.8 L854.8,456.0" fill="none" stroke="#2c2a29" stroke-width="2.5" stroke-linecap="round"/>
   
-  <path d="M97.7,430.0 L171.7,421.7 L251.8,411.2 L288.5,407.0 L312.4,403.0 L330.8,402.0 L640.4,352.5 L717.9,337.3 L799.1,323.9 L834.2,314.4 L856.5,310.1" fill="none" stroke="#ef3b20" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="96.0" cy="432.1" r="3.5" fill="#ef3b20"/>
-  <circle cx="173.9" cy="419.8" r="3.5" fill="#ef3b20"/>
-  <circle cx="251.9" cy="411.4" r="3.5" fill="#ef3b20"/>
-  <circle cx="290.9" cy="405.9" r="3.5" fill="#ef3b20"/>
-  <circle cx="310.4" cy="402.8" r="3.5" fill="#ef3b20"/>
-  <circle cx="329.8" cy="399.8" r="3.5" fill="#ef3b20"/>
-  <circle cx="641.6" cy="354.7" r="3.5" fill="#ef3b20"/>
-  <circle cx="719.6" cy="339.3" r="3.5" fill="#ef3b20"/>
-  <circle cx="797.5" cy="325.3" r="3.5" fill="#ef3b20"/>
-  <circle cx="836.5" cy="316.9" r="3.5" fill="#ef3b20"/>
-  <circle cx="856.0" cy="312.5" r="3.5" fill="#ef3b20"/>
-  <text x="776.0" y="302.5" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="700" fill="#ef3b20">9,927,669,993</text>
+  <path d="M97.7,429.2 L169.8,420.9 L247.9,410.4 L283.7,406.2 L307.0,402.3 L324.9,401.3 L626.8,351.8 L702.3,336.7 L781.6,323.4 L815.7,313.9 L856.5,305.1" fill="none" stroke="#ef3b20" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="96.0" cy="431.2" r="3.5" fill="#ef3b20"/>
+  <circle cx="172.0" cy="419.0" r="3.5" fill="#ef3b20"/>
+  <circle cx="248.0" cy="410.7" r="3.5" fill="#ef3b20"/>
+  <circle cx="286.0" cy="405.1" r="3.5" fill="#ef3b20"/>
+  <circle cx="305.0" cy="402.0" r="3.5" fill="#ef3b20"/>
+  <circle cx="324.0" cy="399.0" r="3.5" fill="#ef3b20"/>
+  <circle cx="628.0" cy="354.0" r="3.5" fill="#ef3b20"/>
+  <circle cx="704.0" cy="338.7" r="3.5" fill="#ef3b20"/>
+  <circle cx="780.0" cy="324.7" r="3.5" fill="#ef3b20"/>
+  <circle cx="818.0" cy="316.3" r="3.5" fill="#ef3b20"/>
+  <circle cx="856.0" cy="307.5" r="3.5" fill="#ef3b20"/>
+  <text x="776.0" y="297.5" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="700" fill="#ef3b20">9,929,277,187</text>
   <text x="96.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">May 17</text>
-  <text x="290.9" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">May 27</text>
-  <text x="485.7" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 6</text>
-  <text x="661.1" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 15</text>
-  <text x="856.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 25</text>
+  <text x="286.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">May 27</text>
+  <text x="476.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 6</text>
+  <text x="666.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 16</text>
+  <text x="856.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 26</text>
   <text x="476" y="546" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="17" font-weight="600" fill="#5c5a59">Date</text>
   <text transform="translate(22 284) rotate(-90)" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="17" font-weight="600" fill="#5c5a59">Pulls</text>
   
