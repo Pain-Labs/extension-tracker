@@ -15,24 +15,24 @@
   <line x1="96" y1="112.1" x2="856" y2="111.3" stroke="#2c2a29" stroke-width="1" stroke-dasharray="6 4" opacity="0.2"/><text x="86" y="117.0" text-anchor="end" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="600" fill="#2c2a29">20M</text>
   <path d="M94.8,111.7 L94.7,456.8 L854.8,456.0" fill="none" stroke="#2c2a29" stroke-width="2.5" stroke-linecap="round"/>
   
-  <path d="M97.7,440.2 L169.8,450.5 L247.9,446.7 L283.7,454.4 L307.0,452.5 L324.9,453.0 L626.8,437.4 L702.3,442.5 L781.6,441.2 L815.7,444.9 L856.5,445.0" fill="none" stroke="#ef3b20" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M97.7,440.2 L167.9,450.5 L244.2,446.7 L279.0,454.4 L301.9,452.5 L319.4,453.0 L613.8,437.4 L687.5,442.5 L764.9,441.2 L798.1,444.9 L856.5,441.5" fill="none" stroke="#ef3b20" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
   <circle cx="96.0" cy="442.2" r="3.5" fill="#ef3b20"/>
-  <circle cx="172.0" cy="448.6" r="3.5" fill="#ef3b20"/>
-  <circle cx="248.0" cy="446.9" r="3.5" fill="#ef3b20"/>
-  <circle cx="286.0" cy="453.3" r="3.5" fill="#ef3b20"/>
-  <circle cx="305.0" cy="452.2" r="3.5" fill="#ef3b20"/>
-  <circle cx="324.0" cy="450.8" r="3.5" fill="#ef3b20"/>
-  <circle cx="628.0" cy="439.6" r="3.5" fill="#ef3b20"/>
-  <circle cx="704.0" cy="444.6" r="3.5" fill="#ef3b20"/>
-  <circle cx="780.0" cy="442.5" r="3.5" fill="#ef3b20"/>
-  <circle cx="818.0" cy="447.3" r="3.5" fill="#ef3b20"/>
-  <circle cx="856.0" cy="447.4" r="3.5" fill="#ef3b20"/>
-  <text x="776.0" y="437.4" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="700" fill="#ef3b20">10,645,923</text>
+  <circle cx="170.1" cy="448.6" r="3.5" fill="#ef3b20"/>
+  <circle cx="244.3" cy="446.9" r="3.5" fill="#ef3b20"/>
+  <circle cx="281.4" cy="453.3" r="3.5" fill="#ef3b20"/>
+  <circle cx="299.9" cy="452.2" r="3.5" fill="#ef3b20"/>
+  <circle cx="318.4" cy="450.8" r="3.5" fill="#ef3b20"/>
+  <circle cx="615.0" cy="439.6" r="3.5" fill="#ef3b20"/>
+  <circle cx="689.2" cy="444.6" r="3.5" fill="#ef3b20"/>
+  <circle cx="763.3" cy="442.5" r="3.5" fill="#ef3b20"/>
+  <circle cx="800.4" cy="447.3" r="3.5" fill="#ef3b20"/>
+  <circle cx="856.0" cy="443.9" r="3.5" fill="#ef3b20"/>
+  <text x="776.0" y="433.9" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="700" fill="#ef3b20">10,743,542</text>
   <text x="96.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">May 17</text>
-  <text x="286.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">May 27</text>
-  <text x="476.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 6</text>
-  <text x="666.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 16</text>
-  <text x="856.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 26</text>
+  <text x="281.4" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">May 27</text>
+  <text x="485.3" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 7</text>
+  <text x="670.6" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 17</text>
+  <text x="856.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 27</text>
   <text x="476" y="546" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="17" font-weight="600" fill="#5c5a59">Date</text>
   <text transform="translate(22 284) rotate(-90)" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="17" font-weight="600" fill="#5c5a59">Avg Daily Users</text>
   
