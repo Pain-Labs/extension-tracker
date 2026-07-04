@@ -15,24 +15,25 @@
   <line x1="96" y1="112.1" x2="856" y2="111.3" stroke="#2c2a29" stroke-width="1" stroke-dasharray="6 4" opacity="0.2"/><text x="86" y="117.0" text-anchor="end" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="600" fill="#2c2a29">20K</text>
   <path d="M94.8,111.7 L94.7,456.8 L854.8,456.0" fill="none" stroke="#2c2a29" stroke-width="2.5" stroke-linecap="round"/>
   
-  <path d="M97.7,428.8 L126.1,411.1 L144.5,403.9 L400.9,349.8 L453.8,347.7 L501.2,344.2 L628.4,327.7 L692.6,320.3 L728.2,319.9 L756.7,314.3 L856.5,303.0" fill="none" stroke="#ef3b20" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="96.0" cy="430.9" r="3.5" fill="#ef3b20"/>
-  <circle cx="128.3" cy="409.2" r="3.5" fill="#ef3b20"/>
-  <circle cx="144.5" cy="404.2" r="3.5" fill="#ef3b20"/>
-  <circle cx="403.2" cy="348.7" r="3.5" fill="#ef3b20"/>
-  <circle cx="451.7" cy="347.5" r="3.5" fill="#ef3b20"/>
-  <circle cx="500.3" cy="342.0" r="3.5" fill="#ef3b20"/>
-  <circle cx="629.6" cy="329.9" r="3.5" fill="#ef3b20"/>
-  <circle cx="694.3" cy="322.3" r="3.5" fill="#ef3b20"/>
-  <circle cx="726.6" cy="321.3" r="3.5" fill="#ef3b20"/>
-  <circle cx="759.0" cy="316.7" r="3.5" fill="#ef3b20"/>
-  <circle cx="856.0" cy="305.4" r="3.5" fill="#ef3b20"/>
-  <text x="776.0" y="295.4" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="700" fill="#ef3b20">13,180</text>
+  <path d="M97.7,428.8 L125.5,411.1 L143.4,403.9 L394.5,349.8 L446.3,347.7 L492.8,344.2 L617.3,327.7 L680.1,320.2 L715.1,319.9 L742.9,314.3 L840.7,302.9 L853.7,303.8" fill="none" stroke="#ef3b20" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="96.0" cy="430.8" r="3.5" fill="#ef3b20"/>
+  <circle cx="127.7" cy="409.2" r="3.5" fill="#ef3b20"/>
+  <circle cx="143.5" cy="404.1" r="3.5" fill="#ef3b20"/>
+  <circle cx="396.8" cy="348.7" r="3.5" fill="#ef3b20"/>
+  <circle cx="444.3" cy="347.4" r="3.5" fill="#ef3b20"/>
+  <circle cx="491.8" cy="342.0" r="3.5" fill="#ef3b20"/>
+  <circle cx="618.5" cy="329.9" r="3.5" fill="#ef3b20"/>
+  <circle cx="681.8" cy="322.2" r="3.5" fill="#ef3b20"/>
+  <circle cx="713.5" cy="321.2" r="3.5" fill="#ef3b20"/>
+  <circle cx="745.2" cy="316.7" r="3.5" fill="#ef3b20"/>
+  <circle cx="840.2" cy="305.3" r="3.5" fill="#ef3b20"/>
+  <circle cx="856.0" cy="305.0" r="3.5" fill="#ef3b20"/>
+  <text x="776.0" y="295.0" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="700" fill="#ef3b20">13,192</text>
   <text x="96.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">May 17</text>
-  <text x="290.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">May 29</text>
-  <text x="484.1" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 10</text>
-  <text x="662.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 21</text>
-  <text x="856.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jul 3</text>
+  <text x="286.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">May 29</text>
+  <text x="476.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 10</text>
+  <text x="666.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 22</text>
+  <text x="856.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jul 4</text>
   <text x="476" y="546" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="17" font-weight="600" fill="#5c5a59">Date</text>
   <text transform="translate(22 284) rotate(-90)" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="17" font-weight="600" fill="#5c5a59">Downloads</text>
   
