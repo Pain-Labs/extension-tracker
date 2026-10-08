@@ -15,14 +15,14 @@
   <line x1="96" y1="112.1" x2="856" y2="111.3" stroke="#2c2a29" stroke-width="1" stroke-dasharray="6 4" opacity="0.2"/><text x="86" y="117.0" text-anchor="end" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="600" fill="#2c2a29">20M</text>
   <path d="M94.8,111.7 L94.7,456.8 L854.8,456.0" fill="none" stroke="#2c2a29" stroke-width="2.5" stroke-linecap="round"/>
   
-  <path d="M97.7,435.2 L115.0,445.4 L138.5,441.6 L146.8,449.2 L156.5,447.3 L160.7,447.9 L243.6,432.4 L264.4,437.5 L288.9,436.2 L295.7,439.8 L319.7,434.7 L327.6,444.0 L333.9,446.4 L338.9,444.9 L352.6,437.8 L356.6,436.5 L370.2,445.6 L386.2,441.0 L394.0,438.4 L397.4,442.0 L415.4,445.9 L446.2,447.8 L455.1,450.2 L466.6,444.3 L477.9,450.8 L487.8,447.0 L495.5,450.2 L503.7,443.7 L524.4,447.7 L540.9,443.8 L564.9,446.9 L580.7,441.4 L605.7,449.0 L613.6,443.8 L622.5,443.1 L628.9,448.2 L643.3,442.8 L646.3,437.1 L664.6,439.5 L677.7,435.7 L682.7,432.7 L697.3,431.5 L708.6,432.2 L737.0,429.2 L744.6,428.1 L749.4,427.1 L762.5,425.3 L763.5,417.4 L768.6,424.2 L776.2,427.2 L794.2,426.2 L825.1,424.8 L835.3,419.2 L856.1,421.0" fill="none" stroke="#ef3b20" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="856.0" cy="420.6" r="5" fill="#ef3b20"/>
-  <text x="776.0" y="410.6" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="700" fill="#ef3b20">11,260,883</text>
+  <path d="M97.7,435.2 L114.9,445.4 L138.2,441.6 L146.4,449.2 L156.1,447.3 L160.3,447.9 L242.6,432.4 L263.2,437.5 L287.6,436.2 L294.3,439.8 L318.2,434.7 L326.0,444.0 L332.2,446.4 L337.2,444.9 L350.8,437.8 L354.8,436.5 L368.2,445.6 L384.2,441.0 L392.0,438.4 L395.3,442.0 L413.2,445.9 L443.7,447.8 L452.6,450.2 L464.0,444.3 L475.2,450.8 L485.1,447.0 L492.7,450.2 L500.9,443.7 L521.4,447.7 L537.8,443.8 L561.7,446.9 L577.4,441.4 L602.1,449.0 L610.0,443.8 L618.9,443.1 L625.2,448.2 L639.5,442.8 L642.4,437.1 L660.6,439.5 L673.6,435.7 L678.6,432.7 L693.2,431.5 L704.4,432.2 L732.6,429.2 L740.1,428.1 L744.8,427.1 L757.9,425.3 L758.8,417.4 L763.9,424.2 L771.4,427.2 L789.4,426.2 L820.1,424.8 L830.2,419.2 L856.1,420.4" fill="none" stroke="#ef3b20" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="856.0" cy="419.9" r="5" fill="#ef3b20"/>
+  <text x="776.0" y="409.9" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="700" fill="#ef3b20">11,279,732</text>
   <text x="96.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">May 17</text>
-  <text x="287.3" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 22</text>
-  <text x="478.7" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jul 28</text>
-  <text x="664.7" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Sep 1</text>
-  <text x="856.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Oct 7</text>
+  <text x="286.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 22</text>
+  <text x="476.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jul 28</text>
+  <text x="666.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Sep 2</text>
+  <text x="856.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Oct 8</text>
   <text x="476" y="546" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="17" font-weight="600" fill="#5c5a59">Date</text>
   <text transform="translate(22 284) rotate(-90)" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="17" font-weight="600" fill="#5c5a59">Avg Daily Users</text>
   
