@@ -15,14 +15,14 @@
   <line x1="96" y1="112.1" x2="856" y2="111.3" stroke="#2c2a29" stroke-width="1" stroke-dasharray="6 4" opacity="0.2"/><text x="86" y="117.0" text-anchor="end" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="600" fill="#2c2a29">20B</text>
   <path d="M94.8,111.7 L94.7,456.8 L854.8,456.0" fill="none" stroke="#2c2a29" stroke-width="2.5" stroke-linecap="round"/>
   
-  <path d="M97.7,452.5 L114.8,456.4 L137.9,454.1 L146.1,455.4 L155.7,454.5 L159.8,456.4 L241.6,451.4 L262.0,451.4 L286.3,451.9 L292.9,450.7 L316.7,450.6 L324.4,451.7 L330.6,453.8 L335.6,452.6 L349.1,450.3 L353.1,451.2 L366.3,452.6 L382.2,452.5 L389.9,452.1 L393.3,451.6 L411.0,450.4 L441.3,450.5 L450.1,453.2 L461.5,452.7 L472.6,452.6 L482.4,448.9 L490.0,452.7 L498.1,451.8 L518.4,449.4 L534.7,451.7 L558.5,448.1 L574.1,448.0 L598.6,451.3 L606.5,449.8 L615.3,449.0 L621.6,451.8 L635.8,450.5 L638.6,449.3 L656.7,449.7 L669.7,448.4 L674.6,447.1 L689.0,450.6 L700.2,448.7 L728.2,448.7 L735.7,448.0 L740.4,447.5 L753.3,450.8 L754.2,446.0 L759.3,449.5 L766.8,449.6 L784.6,450.2 L815.1,449.2 L825.1,449.4 L856.1,447.9" fill="none" stroke="#ef3b20" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M97.7,452.5 L114.6,456.3 L137.6,454.1 L145.7,455.3 L155.3,454.5 L159.4,456.4 L240.5,451.4 L260.9,451.4 L285.0,451.9 L291.5,450.7 L315.2,450.6 L322.8,451.7 L329.0,453.8 L333.9,452.5 L347.4,450.3 L351.3,451.1 L364.5,452.5 L380.2,452.5 L387.9,452.1 L391.2,451.6 L408.8,450.4 L439.0,450.5 L447.7,453.2 L458.9,452.7 L470.0,452.6 L479.8,448.9 L487.3,452.7 L495.3,451.8 L515.5,449.4 L531.7,451.7 L555.3,448.1 L570.8,448.0 L595.2,451.3 L603.0,449.8 L611.7,449.0 L618.0,451.8 L632.1,450.5 L634.9,449.3 L652.9,449.7 L665.8,448.4 L670.7,447.1 L685.0,450.6 L696.0,448.7 L723.8,448.7 L731.3,447.9 L735.9,447.5 L748.8,450.8 L749.7,446.0 L754.7,449.5 L762.2,449.6 L779.9,450.2 L810.2,449.2 L820.2,449.4 L850.8,447.9 L855.2,446.5" fill="none" stroke="#ef3b20" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
   <circle cx="856.0" cy="447.4" r="5" fill="#ef3b20"/>
-  <text x="776.0" y="437.4" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="700" fill="#ef3b20">10,095,343,869</text>
+  <text x="776.0" y="437.4" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="700" fill="#ef3b20">10,096,984,213</text>
   <text x="96.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">May 17</text>
-  <text x="284.7" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 22</text>
-  <text x="478.6" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jul 29</text>
-  <text x="667.3" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Sep 3</text>
-  <text x="856.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Oct 9</text>
+  <text x="288.6" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 23</text>
+  <text x="476.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jul 29</text>
+  <text x="668.6" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Sep 4</text>
+  <text x="856.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Oct 10</text>
   <text x="476" y="546" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="17" font-weight="600" fill="#5c5a59">Date</text>
   <text transform="translate(22 284) rotate(-90)" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="17" font-weight="600" fill="#5c5a59">Pulls</text>
   
